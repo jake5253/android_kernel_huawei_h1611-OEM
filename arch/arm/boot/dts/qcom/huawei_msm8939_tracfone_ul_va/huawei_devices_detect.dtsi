@@ -1,0 +1,6 @@
+/{
+    hw_device:hw_device{
+        compatible = "huawei,hw_device";
+        status = "okay";
+    };
+};

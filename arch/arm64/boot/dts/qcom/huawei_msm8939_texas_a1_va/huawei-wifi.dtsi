@@ -1,0 +1,15 @@
+ / {
+        huawei_wifi_info {
+                  compatible = "huawei,hw_wifi_info";
+                  status = "ok";
+                  wifi,chiptype = "2.7";
+                  wifi,pubfile_id = "texas_a1";
+                  wifi,fw_ver = "QCOM_WCN3680B_2.0.1";
+                  wifi,fem_check_flag = "enable";
+                  wifi,fem_check_low_pd_threshold = "450";
+                  wifi,fem_check_high_pd_threshold = "1000";
+                  wifi,fem_check_5g_flag = "enable";
+                  wifi,fem_check_5g_low_pd_threshold = "400";
+                  wifi,fem_check_5g_high_pd_threshold = "900";
+        };
+};

@@ -1,0 +1,9 @@
+ / {
+        huawei_fac_info {
+                  compatible = "huawei,hw_fac_info";
+                  fac,product_name = "HUAWEI H1611";
+                  fac,hardware_ver = "HL1H1611M";
+                  fac,software_ver = "MSM8939_H1611_VA";
+                  status = "ok";
+        };
+};

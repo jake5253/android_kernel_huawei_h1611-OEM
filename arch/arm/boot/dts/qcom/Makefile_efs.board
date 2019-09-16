@@ -1,0 +1,78 @@
+dtb-$(CONFIG_ARCH_MSM8916) += 	huawei_ale_cl_vb_efs.dtb \
+	huawei_ale_cl_vc_efs.dtb \
+	huawei_ale_l04_va_efs.dtb \
+	huawei_ale_l04_vc3.0_efs.dtb \
+	huawei_ale_l04_vc_efs.dtb \
+	huawei_c8818_cl_va_efs.dtb \
+	huawei_chm_cl_va_efs.dtb \
+	huawei_chm_cl_vb_efs.dtb \
+	huawei_kiw_al10_vc3.0_efs.dtb \
+	huawei_kiw_al10_vc_efs.dtb \
+	huawei_kiw_al10_vd3.0_efs.dtb \
+	huawei_kiw_al10_vd_efs.dtb \
+	huawei_kiw_al10_vf3.0_efs.dtb \
+	huawei_kiw_al10_vf_efs.dtb \
+	huawei_kiw_al20_vb3.0_efs.dtb \
+	huawei_kiw_al20_vb_efs.dtb \
+	huawei_kiw_cl00_vc3.0_efs.dtb \
+	huawei_kiw_cl00_vc_efs.dtb \
+	huawei_kiw_cl00_vd3.0_efs.dtb \
+	huawei_kiw_cl00_vd_efs.dtb \
+	huawei_kiw_l05_vb3.0_efs.dtb \
+	huawei_kiw_l05_vb_efs.dtb \
+	huawei_kiw_l21_vc3.0_efs.dtb \
+	huawei_kiw_l21_vc_efs.dtb \
+	huawei_kiw_l21_vd3.0_efs.dtb \
+	huawei_kiw_l21_vd_efs.dtb \
+	huawei_kiw_l22_vb3.0_efs.dtb \
+	huawei_kiw_l22_vb_efs.dtb \
+	huawei_kiw_l22_vc3.0_efs.dtb \
+	huawei_kiw_l22_vc_efs.dtb \
+	huawei_kiw_l22_vd3.0_efs.dtb \
+	huawei_kiw_l22_vd_efs.dtb \
+	huawei_kiw_l23_vb3.0_efs.dtb \
+	huawei_kiw_l23_vb_efs.dtb \
+	huawei_kiw_l23_vc3.0_efs.dtb \
+	huawei_kiw_l23_vc_efs.dtb \
+	huawei_kiw_l23_vd3.0_efs.dtb \
+	huawei_kiw_l23_vd_efs.dtb \
+	huawei_kiw_l24_vb3.0_efs.dtb \
+	huawei_kiw_l24_vb_efs.dtb \
+	huawei_kiw_l24_vc3.0_efs.dtb \
+	huawei_kiw_l24_vc_efs.dtb \
+	huawei_kiw_l33_vd3.0_efs.dtb \
+	huawei_kiw_l33_vd_efs.dtb \
+	huawei_kiw_tl00h_vc3.0_efs.dtb \
+	huawei_kiw_tl00h_vc_efs.dtb \
+	huawei_kiw_tl00h_vd3.0_efs.dtb \
+	huawei_kiw_tl00h_vd_efs.dtb \
+	huawei_kiw_tl00h_vt3.0_efs.dtb \
+	huawei_kiw_tl00h_vt_efs.dtb \
+	huawei_kiw_ul00_vc3.0_efs.dtb \
+	huawei_kiw_ul00_vc_efs.dtb \
+	huawei_kiw_ul00_vd3.0_efs.dtb \
+	huawei_kiw_ul00_vd_efs.dtb \
+	huawei_tracfone_cl_va3.0_efs.dtb \
+	huawei_tracfone_cl_va_efs.dtb \
+	huawei_tracfone_ul_va3.0_efs.dtb \
+	huawei_tracfone_ul_va_efs.dtb \
+	huawei_texas_a1_va_efs.dtb \
+	huawei_texas_a1_va3.0_efs.dtb \
+
+DTB_NAMES := $(subst $\",,$(CONFIG_BUILD_ARM_APPENDED_DTB_IMAGE_NAMES))
+ifneq ($(DTB_NAMES),)
+DTB_LIST := $(addsuffix .dtb,$(DTB_NAMES))
+else
+DTB_LIST := $(dtb-y)
+endif
+
+targets += dtbs
+targets += $(addprefix ../, $(DTB_LIST))
+
+
+$(obj)/../%.dtb: $(src)/%.dts FORCE
+	$(call if_changed_dep,dtc)
+
+dtbs: $(addprefix $(obj)/../,$(DTB_LIST))
+
+clean-files := *.dtb

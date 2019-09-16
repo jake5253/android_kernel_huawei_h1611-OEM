@@ -1,0 +1,39 @@
+/ {
+    huawei_audio_info {
+        compatible = "huawei,hw_audio_info";
+        product-identifier = "h1611";
+        speaker-pa = "tfa9895";
+
+        pa-i2c = "i2c_1";
+        builtin-master-mic-exist;
+        builtin-2nd-mic-exist;
+        hand_held_dual_mic_strategy;
+        status = "ok";
+        loud_speaker_dual_mic_strategy;
+        product-btsco-nrec-adapt;
+        huawei,hac_gpio = <&msm_gpio 116 0x0>;
+
+    };
+};
+
+&soc {
+    sound {
+        qcom,msm-micbias1-ext-cap;
+        qcom,msm-ext-pa = "quaternary";
+        pinctrl-names = "cdc_lines_act",
+            "cdc_lines_sus",
+            "cdc_lines_quat_ext_act",
+            "cdc_lines_quat_ext_sus";
+        pinctrl-0 = <&cdc_pdm_lines_act>;
+        pinctrl-1 = <&cdc_pdm_lines_sus>;
+        pinctrl-2 = <&cdc_pdm_lines_act &ext_cdc_tlmm_lines_act>;
+        pinctrl-3 = <&cdc_pdm_lines_sus &ext_cdc_tlmm_lines_sus>;
+    };
+};
+&spmi_bus {
+        qcom,pm8916@1 {
+                pm8916_tombak_dig: msm8x16_wcd_codec@f000{
+                        qcom,cdc-boost-voltage = <5000>;
+                };
+        };
+};
